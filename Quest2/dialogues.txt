@@ -1,6 +1,36 @@
-Question 1
-Truth 1
-Lie 1
-Question 2
-Truth 2
-Lie 2
+Where was Nick born?
+California
+Michigan
+Was Nick in gymnastics as a child?
+No
+Yes
+Has Nick read more than 1600 chapters of a web novel?
+Yes
+No
+What Instrument does Kayla play in the Warrior marching band?
+Mellophone
+Euphonium
+Was Kayla on the soccer team in high school?
+No
+Yes
+Is Kayla a morning person or night owl?
+Night Owl
+Morning person
+What instrument does Tin play?
+Saxophone 
+Violin
+Was Tin accepted by a world top 25 university?
+Yes
+No
+Was Tin’s homemade day trading algorithm profitable (adjusted to inflation)?
+No
+Yes
+What is Qamer’s favorite dessert?
+Cakepops
+Strawberry Shortcake
+What is Qamer’s favorite weather?
+Warm and sunny
+Light rain
+Where would Qamer like to visit more?
+Beijing
+Barcelona

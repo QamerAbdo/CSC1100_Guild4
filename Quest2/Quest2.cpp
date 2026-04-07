@@ -1,19 +1,13 @@
 /* The purpose of this program is to create a text game where the user asks sentinels
-a question and determines whether the answer is true or false.
-TO DO:
-~ Win Condition
-~ Timer
-~ Score
-~ Write more dialogues to TXT file
-~ Gimmick to make game interesting
-*/
+a question and determines whether the answer is true or false. */
 #include <iostream>
 #include <cstdlib>
 #include <string>
 #include <fstream>
 #include <vector>
 #include <random>
-
+#include <cmath>
+#include <chrono>
 using namespace std;
 
 // Dialogue class to hold the question, truthful answer, and lie
@@ -83,6 +77,7 @@ bool askUserAnswer() {
 }
 
 int main() {
+    const int TOTAL_QUESTIONS = 8; // Total number of questions to ask the user
     // Load dialogues from file
     vector<Dialogue> dialogues = getDialogues();
     // Initialize random number generator (Mersenne Twister)
@@ -90,9 +85,12 @@ int main() {
     mt19937 gen(rd());
     bernoulli_distribution boolean(0.5);
     uniform_int_distribution<> integer(0, dialogues.size() - 1);
-
+    // Win Timer
+    auto startTime = chrono::steady_clock::now();
+    // Keep track of the number of questions asked, and the user's score
+    int questionsAsked = 0, correct = 0;
     // Main game loop
-    while (true) {
+    while (questionsAsked < TOTAL_QUESTIONS) { // Ask TOTAL_QUESTIONS questions
         // Create a sentinel with a random truthfulness
         Sentinel sentinel(boolean(gen));
         // Select a random dialogue
@@ -104,9 +102,20 @@ int main() {
         // Check if the user's answer is correct
         if (userAnswer == sentinel.isTruthful) {
             cout << "Correct!\n" << endl;
+            correct++;
         } else {
             cout << "Incorrect!\n" << endl;
         }
+        questionsAsked++;
     }
+    // On Win
+    auto endTime = chrono::steady_clock::now(); // End the timer
+    long long gameDuration = chrono::duration_cast<chrono::seconds>(endTime - startTime).count();
+    int gameMinutes = gameDuration / 60; // Convert seconds to minutes
+    int gameSeconds = gameDuration % 60; // Get the remaining seconds
+    double score = round(static_cast<double>(correct) / TOTAL_QUESTIONS * 10000) / 100; // Calculate score as a percentage
+    cout << "You have reached the end of the game!" << endl
+    << "Score: " << correct << "/" << TOTAL_QUESTIONS << " (" << score << "%) Correct" << endl // Display Score
+    << "Game Timer: " << gameMinutes << " minutes and " << gameSeconds << " seconds!" << endl; // Game Timer
     return 0;
 }
