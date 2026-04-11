@@ -34,3 +34,12 @@ Light rain
 Where would Qamer like to visit more?
 Beijing
 Barcelona
+Does Kyle like cats? 
+Yes 
+No
+Where does Kyle want to travel to this summer? 
+South of France 
+Jail 
+Can Kyle Swim? 
+Yes 
+No 
