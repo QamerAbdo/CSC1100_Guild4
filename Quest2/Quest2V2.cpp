@@ -10,7 +10,6 @@
 #ifdef _WIN32
 #include <windows.h> // for UTF8
 #endif
-#include <windows.h>
 using namespace std;
 
 // Dialogue class
