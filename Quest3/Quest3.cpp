@@ -68,15 +68,24 @@ char getChoice() {
     return choice;
 }
 
+int askShift() {
+    int shift;
+    while (!(cin >> shift) || shift < 1 || shift > 25) {
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "Invalid input. Please enter a number between 1 and 25: ";
+    }
+    return shift;
+}
+
 // Function to decode the encoded message by allowing the user to guess the shift value
 void decodeEncoded(const string &message, const string &encoded) {
     cout << "Do you want to decode the recent captured message? ('y' or 'n'): ";
     char choice = getChoice();
     if (choice == 'y') {
         while (true) {
-            int guess;
             cout << "Enter your guess for the shift value (1-25) to decode the message: ";
-            cin >> guess;
+            int guess = askShift();
             CaesarCipher *cipher;
             string decoded;
             // Check if the guess is 13 to use ROT13 cipher, otherwise use Caesar cipher with the guessed shift value
@@ -126,9 +135,8 @@ int main() {
             cin.ignore();
             cout << "Enter the message to be encoded: ";
             getline(cin, message);
-            int shift;
             cout << "Enter a shift value (1-25) to encode the message accordingly: ";
-            cin >> shift;
+            int shift = askShift();
             CaesarCipher *cipher;
             string encoded;
             // Check if the shift value is 13 to use ROT13 cipher, otherwise use Caesar cipher with the specified shift value
@@ -156,9 +164,8 @@ int main() {
             cin.ignore();
             cout << "Enter the message to be decoded: ";
             getline(cin, message);
-            int shift;
             cout << "Enter a shift value (1-25) to decode the message accordingly: ";
-            cin >> shift;
+            int shift = askShift();
             CaesarCipher *cipher;
             string decoded;
             // Check if the shift value is 13 to use ROT13 cipher, otherwise use Caesar cipher with the specified shift value
